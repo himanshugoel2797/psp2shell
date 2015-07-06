@@ -616,10 +616,13 @@ void start(void)
 	strcpy(hbrewPath, cwd);
 	strcat(hbrewPath, file->name);
 
+	end_video();
 	printf("Loading %s", hbrewPath);
-	loadHomebrew(hbrewPath, 1);
-	startHomebrew(1);
-
+	int result = loadHomebrew(hbrewPath, 1);
+	printf("Load result: %d", result);
+	if(result >= 0)startHomebrew(1);
+	else printf("Load failed");
+	init_video();
 }
 
 // Delete Application
