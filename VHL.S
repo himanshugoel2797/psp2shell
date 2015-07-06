@@ -1,0 +1,6 @@
+#include <psp2/import.S>
+
+PSP2_IMPORT_HEAD 0x0, VHL, 0001, 1, 0
+
+PSP2_IMPORT_FUNC VHL, 0001, F00, 0x00000001, loadHomebrew
+PSP2_IMPORT_FUNC VHL, 0001, F00, 0x00000002, startHomebrew

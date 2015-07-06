@@ -108,6 +108,8 @@ int copy_folder_recursive(char * a, char * b);
 int isPathISO(const char * path);
 int isPathCSO(const char * path);
 int isGameISO(const char * path);
+int loadHomebrew(const char *path, int slot);
+int startHomebrew(int slot);
 
 // Menu Position
 int position = 0;
@@ -156,8 +158,7 @@ int main()
 			if(PRESSED(lastbuttons, data.buttons, PSP2_CTRL_START))
 			{
 				// Start File
-				//start();
-				break;
+				start();
 			}
 
 			// Delete File
@@ -432,7 +433,7 @@ void paintList(int withclear)
 	// Paint Controls
 	printoob("[ UP & DOWN ]    File Selection", 10, 252, FONT_COLOR);
 	printoob("[ LEFT & RIGHT ] Mode Selection", 10, 262, FONT_COLOR);
-	printoob("[ START ]  Exit", 330, 252, FONT_COLOR);
+	printoob("[ START ]  Launch", 330, 252, FONT_COLOR);
 	printoob("[ SELECT ] Delete", 330, 262, FONT_COLOR);
 	printoob("SQUARE    Copy", 345, 120, FONT_COLOR);
 	printoob("TRIANGLE  Cut", 345, 130, FONT_COLOR);
@@ -610,6 +611,15 @@ void start(void)
 
 	// Not a valid file
 	if(file == NULL || file->isFolder) return;
+
+	char hbrewPath[1536];
+	strcpy(hbrewPath, cwd);
+	strcat(hbrewPath, file->name);
+
+	printf("Loading %s", hbrewPath);
+	loadHomebrew(hbrewPath, 1);
+	startHomebrew(1);
+
 }
 
 // Delete Application
@@ -1095,4 +1105,3 @@ int copy_folder_recursive(char * a, char * b)
 	// Open Error
 	else return -1;
 }
-
