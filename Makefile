@@ -3,11 +3,11 @@ OBJS   = main.o draw.o font_data.o
 
 LIBS = -lc_stub -lSceKernel_stub -lSceDisplay_stub -lSceGxm_stub -lSceCtrl_stub
 
-PREFIX  = $(DEVKITARM)/bin/arm-none-eabi
+PREFIX  = arm-none-eabi
 CC      = $(PREFIX)-gcc
 READELF = $(PREFIX)-readelf
 OBJDUMP = $(PREFIX)-objdump
-CFLAGS  = -Wall -specs=$(PSP2SDK)/psp2.specs -I$(DEVKITARM)/include -L$(PSP2SDK)/lib
+CFLAGS  = -Wall -specs=psp2.specs
 ASFLAGS = $(CFLAGS)
 
 all: clean VHL.o $(TARGET)_fixup.elf
