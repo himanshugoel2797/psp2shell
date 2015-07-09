@@ -623,6 +623,7 @@ void start(void)
 	if(result >= 0)startHomebrew(1);
 	else printf("Load failed");
 	init_video();
+	paintList(1);
 }
 
 // Delete Application
