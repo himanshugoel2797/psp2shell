@@ -23,5 +23,5 @@ libVHL/libvhl_stub.a:
 	$(MAKE) -C $(dir $@) $(notdir $@)
 
 clean:
-	@rm -rf $(TARGET)_fixup.elf $(TARGET).elf $(OBJS)
+	@rm -rf $(TARGET)_n.elf $(TARGET).elf $(OBJS)
 	@$(MAKE) -C libVHL clean
