@@ -1,0 +1,3 @@
+[submodule "libVHL"]
+	path = libVHL
+	url = git://github.com/minPSVSDK/libVHL

@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "vhl.h"
+#include "libVHL/vhl.h"
 #include <psp2/ctrl.h>
 #include <psp2/touch.h>
 #include <psp2/display.h>
@@ -15,7 +15,7 @@
 #include <psp2/appmgr.h>
 #include <psp2/kernel/processmgr.h>
 #include <psp2/kernel/threadmgr.h>
-#include <psp2/kernel/memorymgr.h>
+#include <psp2/kernel/sysmem.h>
 
 #include "draw.h"
 
@@ -122,7 +122,7 @@ File * files = NULL;
 // Entry Point
 int main()
 {
-								vhl_SetIntSetting(VARIABLE_EXIT_MASK, PSP2_CTRL_SELECT | PSP2_CTRL_START);
+								vhlSetIntSetting(VARIABLE_EXIT_MASK, PSP2_CTRL_SELECT | PSP2_CTRL_START);
 
 								// Set Start Path
 								strcpy(cwd, START_PATH);
