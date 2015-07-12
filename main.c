@@ -21,7 +21,7 @@
 
 PSP2_MODULE_INFO(0, 0, "psp2shell");
 
-#define ROOT_PATH "cache0:/"
+#define ROOT_PATH "vfs0:/"
 #define START_PATH ROOT_PATH
 // Default Start Path
 
@@ -128,7 +128,7 @@ int main()
 								strcpy(cwd, START_PATH);
 
 								// Initialize Screen Output
-								init_video();
+								if(init_video() < 0)return -1;
 
 								// Update List
 								updateList(CLEAR);

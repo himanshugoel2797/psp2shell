@@ -14,7 +14,7 @@
 
 #define WHITE RGBA8(255, 255, 255, 255)
 
-void init_video();
+int init_video();
 void end_video();
 void swap_buffers();
 void clear_screen();

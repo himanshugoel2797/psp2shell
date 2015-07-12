@@ -48,7 +48,7 @@ static void *alloc_gpu_mem(uint32_t type, uint32_t size, uint32_t attribs, SceUI
 	return mem;
 }
 
-void init_video()
+int init_video()
 {
 	int ret;
 
@@ -82,16 +82,16 @@ void init_video()
 		SCREEN_W * SCREEN_H * 4, SCE_GXM_MEMORY_ATTRIB_RW, &fb_memuid[0]);
 
 	if (fb[0].base == NULL) {
-		printf("Could not allocate memory for fb[0]. %p", fb[0].base);
-		return;
+		printf("Could not allocate memory for fb[0]. 0x%08x", fb[0].base);
+		return -1;
 	}
 
 	fb[1].base = alloc_gpu_mem(SCE_KERNEL_MEMBLOCK_TYPE_USER_CDRAM_RW,
 		SCREEN_W * SCREEN_H * 4, SCE_GXM_MEMORY_ATTRIB_RW, &fb_memuid[1]);
 
 	if (fb[1].base == NULL) {
-		printf("Could not allocate memory for fb[1]. %p", fb[1].base);
-		return;
+		printf("Could not allocate memory for fb[1]. 0x%08x", fb[1].base);
+		return -1;
 	}
 
 	/* Display the framebuffer 0 */
@@ -119,12 +119,16 @@ void init_video()
 		"\theight          0x%08X\n",
 		fb[1].size, (uintptr_t)fb[1].base,
 		fb[1].pitch, fb[1].pixelformat, fb[1].width, fb[1].height);
+
+		return 0;
 }
 
 void end_video()
 {
 	sceGxmUnmapMemory(fb[0].base);
 	sceGxmUnmapMemory(fb[1].base);
+	sceKernelFreeMemBlock(fb_memuid[0]);
+	sceKernelFreeMemBlock(fb_memuid[1]);
 	sceGxmTerminate();
 }
 
@@ -205,4 +209,3 @@ void font_draw_stringf(int x, int y, uint32_t color, const char *s, ...)
 	va_end(argptr);
 	font_draw_string(x, y, color, buf);
 }
-
