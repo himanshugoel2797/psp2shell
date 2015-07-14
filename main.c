@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "libVHL/vhl.h"
+#include <vhl.h>
 #include <psp2/ctrl.h>
 #include <psp2/touch.h>
 #include <psp2/display.h>
